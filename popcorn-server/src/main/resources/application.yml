@@ -1,0 +1,30 @@
+server:
+  port: 9320
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /popcorn
+
+# ---------------------------------------------------------------------
+
+spring:
+  application:
+    name: "popcorn-server"
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+# ---------------------------------------------------------------------
+
+# custom the /actuator/info endpoint
+info:
+  app:
+    name: "@project.artifactId@"
+    encoding: "@project.build.sourceEncoding@"
+    java:
+      source: "@java.version@"
+      target: "@java.version@"
+    env:
+      active: ${spring.profiles.active}
