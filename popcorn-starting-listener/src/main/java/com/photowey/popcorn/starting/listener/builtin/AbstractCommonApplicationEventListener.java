@@ -13,55 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.starting.listener.app;
+package com.photowey.popcorn.starting.listener.builtin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.GenericApplicationListener;
 import org.springframework.core.Ordered;
 import org.springframework.core.ResolvableType;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 /**
- * {@code AppStartingListener}
+ * {@code AbstractCommonApplicationEventListener}
  *
  * @author photowey
  * @date 2023/07/08
  * @since 1.0.0
  */
 @Slf4j
-public abstract class AppStartingListener implements GenericApplicationListener, Ordered {
+public abstract class AbstractCommonApplicationEventListener implements GenericApplicationListener, Ordered {
 
-    protected static final String APP_NAME_KEY = "spring.application.name";
     protected static final Class<?>[] SOURCE_TYPES = {SpringApplication.class, ApplicationContext.class};
-    protected static final Class<?>[] EVENT_TYPES = {ApplicationStartingEvent.class};
 
-    protected final AtomicBoolean started = new AtomicBoolean(false);
-
-    @Override
-    public void onApplicationEvent(ApplicationEvent applicationEvent) {
-        try {
-            if (this.started.compareAndSet(false, true)
-                    && applicationEvent instanceof ApplicationStartingEvent) {
-                this.handleApplicationEvent((ApplicationStartingEvent) applicationEvent);
-            }
-        } catch (Exception ignored) {
-            // do nothing
-        }
-    }
+    /**
+     * Support event types.
+     *
+     * @return the event types
+     */
+    public abstract Class<?>[] supportsEventTypes();
 
     @Override
     public boolean supportsSourceType(Class<?> sourceType) {
-        return isAssignableFrom(sourceType, SOURCE_TYPES);
+        return this.isAssignableFrom(sourceType, SOURCE_TYPES);
     }
 
     @Override
     public boolean supportsEventType(ResolvableType resolvableType) {
-        return isAssignableFrom(resolvableType.getRawClass(), EVENT_TYPES);
+        return this.isAssignableFrom(resolvableType.getRawClass(), this.supportsEventTypes());
+    }
+
+    /**
+     * On throwable.
+     *
+     * @param tw {@link Throwable}
+     */
+    protected void onException(Throwable tw) {
+
     }
 
     protected boolean isAssignableFrom(Class<?> type, Class<?>... supportedTypes) {
@@ -72,13 +68,7 @@ public abstract class AppStartingListener implements GenericApplicationListener,
                 }
             }
         }
+
         return false;
     }
-
-    /**
-     * Handle the event {@link ApplicationStartingEvent}
-     *
-     * @param event {@link ApplicationStartingEvent}
-     */
-    public abstract void handleApplicationEvent(ApplicationStartingEvent event);
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo popcorn project compile and deploy...
+echo popcorn framework compile and deploy...
 
 # mvnd
 mvn clean -DskipTests source:jar deploy
