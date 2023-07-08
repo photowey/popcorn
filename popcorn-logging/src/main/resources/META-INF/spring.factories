@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationListener=\
+com.photowey.popcorn.logging.listener.InjectAppHomePropertyApplicationListener
+org.springframework.context.ApplicationContextInitializer=\
+com.photowey.popcorn.logging.initializer.TimeRollingLoggingApplicationInitializer

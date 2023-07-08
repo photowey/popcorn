@@ -17,7 +17,7 @@ package com.photowey.popcorn.autoconfigure.starter;
 
 import com.photowey.popcorn.app.core.holder.ApplicationContextHolder;
 import com.photowey.popcorn.common.thrower.AssertionErrorThrower;
-import com.photowey.popcorn.starting.listener.event.ApplicationStartedLocalEvent;
+import com.photowey.popcorn.starting.event.ApplicationStartedLocalEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 

@@ -28,11 +28,11 @@
 
         <dependency>
             <groupId>com.photowey</groupId>
-            <artifactId>popcorn-app-core</artifactId>
+            <artifactId>popcorn-boot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.photowey</groupId>
-            <artifactId>popcorn-starting-listener</artifactId>
+            <artifactId>popcorn-listener</artifactId>
         </dependency>
 
         <dependency>

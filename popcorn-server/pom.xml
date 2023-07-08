@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.photowey</groupId>
-            <artifactId>popcorn-starting-printer</artifactId>
+            <artifactId>popcorn-printer</artifactId>
         </dependency>
 
         <dependency>

@@ -20,7 +20,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>popcorn-app-core</module>
+        <module>popcorn-boot</module>
         <module>popcorn-autoconfigure</module>
         <module>popcorn-client</module>
         <module>popcorn-common</module>
@@ -29,8 +29,8 @@
         <module>popcorn-logging</module>
         <module>popcorn-scheduler</module>
         <module>popcorn-server</module>
-        <module>popcorn-starting-listener</module>
-        <module>popcorn-starting-printer</module>
+        <module>popcorn-listener</module>
+        <module>popcorn-printer</module>
     </modules>
 
     <!-- @formatter:off -->
@@ -62,7 +62,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.photowey</groupId>
-                <artifactId>popcorn-app-core</artifactId>
+                <artifactId>popcorn-boot</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -108,12 +108,12 @@
 
             <dependency>
                 <groupId>com.photowey</groupId>
-                <artifactId>popcorn-starting-listener</artifactId>
+                <artifactId>popcorn-listener</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.photowey</groupId>
-                <artifactId>popcorn-starting-printer</artifactId>
+                <artifactId>popcorn-printer</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
