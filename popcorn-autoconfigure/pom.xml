@@ -39,6 +39,10 @@
             <groupId>com.photowey</groupId>
             <artifactId>popcorn-logging</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.photowey</groupId>
+            <artifactId>popcorn-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -88,11 +88,13 @@ public final class AppPrinter implements Printer {
                         "Application: '{}' is running! Access URLs:\n\t" +
                         "Local: \t\t{}://localhost:{}{}\n\t" +
                         "External: \t{}://{}:{}{}\n\t" +
+                        "Healthz: \t{}://{}:{}{}/healthz\n\t" +
                         "Actuator: \t{}://{}:{}{}/actuator/health\n\t" +
                         "Profile(s): {}\n----------------------------------------------------------",
                 app + " Context",
                 app,
                 protocol, port, contextPath,
+                protocol, host, port, contextPath,
                 protocol, host, port, contextPath,
                 protocol, host, port, healthContextPath,
                 profileActive
@@ -108,11 +110,13 @@ public final class AppPrinter implements Printer {
                         "Local: \t\t{}://localhost:{}{}\n\t" +
                         "External: \t{}://{}:{}{}\n\t" +
                         "Swagger: \t{}://{}:{}{}/doc.html\n\t" +
+                        "Healthz: \t{}://{}:{}{}/healthz\n\t" +
                         "Actuator: \t{}://{}:{}{}/actuator/health\n\t" +
                         "Profile(s): {}\n----------------------------------------------------------",
                 app + " Context",
                 app,
                 protocol, port, contextPath,
+                protocol, host, port, contextPath,
                 protocol, host, port, contextPath,
                 protocol, host, port, contextPath,
                 protocol, host, port, healthContextPath,

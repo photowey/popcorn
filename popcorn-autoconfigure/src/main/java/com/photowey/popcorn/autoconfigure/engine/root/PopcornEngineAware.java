@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.app.core.engine;
+package com.photowey.popcorn.autoconfigure.engine.root;
 
-import com.photowey.popcorn.app.core.getter.ApplicationContextGetter;
-import com.photowey.popcorn.app.core.getter.BeanFactoryGetter;
-import com.photowey.popcorn.app.core.getter.EnvironmentGetter;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.EnvironmentAware;
+import org.springframework.beans.factory.Aware;
 
 /**
- * {@code Engine}
+ * {@code PopcornEngineAware}
  *
  * @author photowey
- * @date 2023/07/08
+ * @date 2023/07/09
  * @since 1.0.0
  */
-public interface Engine extends
-        BeanFactoryAware, ApplicationContextAware, EnvironmentAware,
-        BeanFactoryGetter, ApplicationContextGetter, EnvironmentGetter {
+public interface PopcornEngineAware extends Aware {
+
+    /**
+     * Inject PopcornEngine by setter.
+     *
+     * @param popcornEngine {@link PopcornEngine}
+     */
+    void setPopcornEngine(PopcornEngine popcornEngine);
 }

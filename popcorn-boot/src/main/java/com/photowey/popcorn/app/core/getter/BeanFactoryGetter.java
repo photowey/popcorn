@@ -32,9 +32,5 @@ public interface BeanFactoryGetter {
      *
      * @return {@link BeanFactory}
      */
-    BeanFactory beanFactory();
-
-    default ListableBeanFactory listableBeanFactory() {
-        return (ListableBeanFactory) this.beanFactory();
-    }
+    ListableBeanFactory beanFactory();
 }

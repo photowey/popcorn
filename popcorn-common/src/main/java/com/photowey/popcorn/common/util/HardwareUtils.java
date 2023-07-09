@@ -13,23 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.app.core.engine;
+package com.photowey.popcorn.common.util;
 
-import com.photowey.popcorn.app.core.getter.ApplicationContextGetter;
-import com.photowey.popcorn.app.core.getter.BeanFactoryGetter;
-import com.photowey.popcorn.app.core.getter.EnvironmentGetter;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.EnvironmentAware;
+import com.photowey.popcorn.common.thrower.AssertionErrorThrower;
 
 /**
- * {@code Engine}
+ * {@code HardwareUtils}
  *
  * @author photowey
- * @date 2023/07/08
+ * @date 2023/07/09
  * @since 1.0.0
  */
-public interface Engine extends
-        BeanFactoryAware, ApplicationContextAware, EnvironmentAware,
-        BeanFactoryGetter, ApplicationContextGetter, EnvironmentGetter {
+public final class HardwareUtils {
+
+    private static final int NCPU = Runtime.getRuntime().availableProcessors();
+
+    private HardwareUtils() {
+        // utility class; can't create
+        AssertionErrorThrower.throwz(HardwareUtils.class);
+    }
+
+    public static int getNcpu() {
+        return NCPU;
+    }
+
+    public static int getDoubleNcpu() {
+        return NCPU << 1;
+    }
 }

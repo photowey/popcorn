@@ -18,6 +18,10 @@
     <dependencies>
         <dependency>
             <groupId>com.photowey</groupId>
+            <artifactId>popcorn-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.photowey</groupId>
             <artifactId>popcorn-common</artifactId>
         </dependency>
 

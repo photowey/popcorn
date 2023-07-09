@@ -29,6 +29,10 @@ public interface EnvironmentGetter {
 
     String SPRING_PROFILES_ACTIVE_KEY = "spring.profiles.active";
 
+    String APPLICATION_SERVER_PORT_KEY = "server.port";
+    String APPLICATION_SERVER_SERVLET_CONTEXT_PATH_KEY = "server.servlet.context-path";
+    String APPLICATION_SERVER_SERVLET_CONTEXT_PATH_ROOT = "/";
+
     String SPRING_PROFILES_ACTIVE_DEV = "dev";
     String SPRING_PROFILES_ACTIVE_TEST = "test";
 
@@ -40,10 +44,16 @@ public interface EnvironmentGetter {
      *
      * @return {@link Environment}
      */
-    Environment environment();
+    default Environment environment() {
+        return null;
+    }
 
     default String determineProfilesActive() {
         return this.environment().getProperty(SPRING_PROFILES_ACTIVE_KEY);
+    }
+
+    default String determineServerServletContextPath() {
+        return this.environment().getProperty(APPLICATION_SERVER_SERVLET_CONTEXT_PATH_KEY, APPLICATION_SERVER_SERVLET_CONTEXT_PATH_ROOT);
     }
 
     default boolean determineDeveloping(String profiles) {
@@ -54,4 +64,7 @@ public interface EnvironmentGetter {
         return profiles.contains(SPRING_PROFILES_ACTIVE_DEV) || profiles.contains(SPRING_PROFILES_ACTIVE_TEST);
     }
 
+    default int determineServerPort() {
+        return Integer.parseInt(this.environment().getProperty(APPLICATION_SERVER_PORT_KEY));
+    }
 }

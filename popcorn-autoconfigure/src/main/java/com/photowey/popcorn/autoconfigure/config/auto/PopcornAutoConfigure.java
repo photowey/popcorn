@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.autoconfigure.config;
+package com.photowey.popcorn.autoconfigure.config.auto;
 
 import com.photowey.popcorn.app.core.notify.DefaultNotifyCenter;
 import com.photowey.popcorn.app.core.notify.NotifyCenter;
 import com.photowey.popcorn.autoconfigure.injector.ApplicationContextInjector;
+import com.photowey.popcorn.autoconfigure.listener.ApplicationStartedLocalEventListener;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,7 @@ import org.springframework.context.annotation.Import;
 @Import(value = {
         PopcornAutoConfigure.InjectorConfigure.class,
         PopcornAutoConfigure.NotifyCenterConfigure.class,
+        PopcornAutoConfigure.EventListenerConfigure.class,
 })
 public class PopcornAutoConfigure {
 
@@ -57,4 +59,12 @@ public class PopcornAutoConfigure {
         }
     }
 
+    @Configuration
+    static class EventListenerConfigure {
+
+        @Bean
+        public ApplicationStartedLocalEventListener applicationStartedLocalEventListener() {
+            return new ApplicationStartedLocalEventListener();
+        }
+    }
 }
