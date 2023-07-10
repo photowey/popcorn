@@ -16,8 +16,8 @@
 package com.photowey.popcorn.app.core.api.health;
 
 import com.photowey.popcorn.app.core.getter.EnvironmentGetter;
+import com.photowey.popcorn.common.formatter.text.StringFormatter;
 import com.photowey.popcorn.core.constant.PopcornConstants;
-import com.photowey.popcorn.core.formatter.text.StringFormatter;
 
 /**
  * {@code HealthzApi}
@@ -28,10 +28,17 @@ import com.photowey.popcorn.core.formatter.text.StringFormatter;
  */
 public interface HealthzApi extends EnvironmentGetter {
 
-    default String populateHealthzApi() {
+    /**
+     * Determine custom health-api path {@code `/healthz`}.
+     *
+     * @return the path of custom health-api.
+     */
+    default String determineHealthzApi() {
         String template = PopcornConstants.STRING_DEFAULT_HEALTH_API_TEMPLATE;
-        String port = this.environment().getProperty(EnvironmentGetter.APPLICATION_SERVER_PORT_KEY, PopcornConstants.STRING_DEFAULT_SERVER_PORT);
-        String ctxPath = this.environment().getProperty(EnvironmentGetter.APPLICATION_SERVER_SERVLET_CONTEXT_PATH_KEY, PopcornConstants.STRING_DEFAULT_SERVER_SERVLET_CONTENT_PATH);
+        String port = this.environment().getProperty(
+                EnvironmentGetter.APPLICATION_SERVER_PORT_KEY, PopcornConstants.STRING_DEFAULT_SERVER_PORT);
+        String ctxPath = this.environment().getProperty(
+                EnvironmentGetter.APPLICATION_SERVER_SERVLET_CONTEXT_PATH_KEY, PopcornConstants.STRING_DEFAULT_SERVER_SERVLET_CONTENT_PATH);
 
         return StringFormatter.format(template, port, ctxPath.startsWith(PopcornConstants.STRING_SLASH)
                 ? ctxPath :

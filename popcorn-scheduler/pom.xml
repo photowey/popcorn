@@ -11,6 +11,18 @@
     </parent>
 
     <artifactId>popcorn-scheduler</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>popcorn-scheduler-core</module>
+        <module>popcorn-scheduler-kernel</module>
+        <module>popcorn-scheduler-repository</module>
+        <module>popcorn-scheduler-repository-database</module>
+        <module>popcorn-scheduler-repository-mongo</module>
+        <module>popcorn-scheduler-service</module>
+        <module>popcorn-scheduler-service-database</module>
+        <module>popcorn-scheduler-service-mongo</module>
+    </modules>
 
     <properties>
     </properties>

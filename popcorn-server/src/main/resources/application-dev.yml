@@ -1,3 +1,17 @@
+# ----------------------------------------------------------------
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# ----------------------------------------------------------------
+
 logging:
   level:
     root: INFO
