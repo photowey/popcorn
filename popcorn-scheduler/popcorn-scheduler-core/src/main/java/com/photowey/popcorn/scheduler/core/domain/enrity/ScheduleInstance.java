@@ -16,6 +16,7 @@
 package com.photowey.popcorn.scheduler.core.domain.enrity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * {@code ScheduleInstance}
@@ -28,10 +29,26 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
 
     private static final long serialVersionUID = 1092906535164975821L;
 
+    /**
+     * The ID of {@link ScheduleApp}
+     */
     private Long appId;
+    /**
+     * The ID of {@link ScheduleGroup}
+     */
     private Long groupId;
+    /**
+     * The IP of schedule instance and shared with client Spring Boot app.
+     */
     private String instanceIp;
+    /**
+     * The port of schedule instance and shared with client Spring Boot app.
+     */
     private Integer instancePort;
+    /**
+     * The latest time of heartbeat.
+     */
+    private LocalDateTime heartbeatTime;
 
     public static ScheduleInstanceBuilder builder() {
         return new ScheduleInstanceBuilder();
@@ -53,6 +70,10 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
         return this.instancePort;
     }
 
+    public LocalDateTime getHeartbeatTime() {
+        return this.heartbeatTime;
+    }
+
     public void setAppId(final Long appId) {
         this.appId = appId;
     }
@@ -69,14 +90,19 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
         this.instancePort = instancePort;
     }
 
+    public void setHeartbeatTime(final LocalDateTime heartbeatTime) {
+        this.heartbeatTime = heartbeatTime;
+    }
+
     public ScheduleInstance() {
     }
 
-    public ScheduleInstance(final Long appId, final Long groupId, final String instanceIp, final Integer instancePort) {
+    public ScheduleInstance(final Long appId, final Long groupId, final String instanceIp, final Integer instancePort, final LocalDateTime heartbeatTime) {
         this.appId = appId;
         this.groupId = groupId;
         this.instanceIp = instanceIp;
         this.instancePort = instancePort;
+        this.heartbeatTime = heartbeatTime;
     }
 
     public static class ScheduleInstanceBuilder {
@@ -84,6 +110,7 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
         private Long groupId;
         private String instanceIp;
         private Integer instancePort;
+        private LocalDateTime heartbeatTime;
 
         ScheduleInstanceBuilder() {
         }
@@ -108,12 +135,17 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
             return this;
         }
 
+        public ScheduleInstanceBuilder heartbeatTime(final LocalDateTime heartbeatTime) {
+            this.heartbeatTime = heartbeatTime;
+            return this;
+        }
+
         public ScheduleInstance build() {
-            return new ScheduleInstance(this.appId, this.groupId, this.instanceIp, this.instancePort);
+            return new ScheduleInstance(this.appId, this.groupId, this.instanceIp, this.instancePort, this.heartbeatTime);
         }
 
         public String toString() {
-            return "ScheduleInstance.ScheduleInstanceBuilder(appId=" + this.appId + ", groupId=" + this.groupId + ", instanceIp=" + this.instanceIp + ", instancePort=" + this.instancePort + ")";
+            return "ScheduleInstance.ScheduleInstanceBuilder(appId=" + this.appId + ", groupId=" + this.groupId + ", instanceIp=" + this.instanceIp + ", instancePort=" + this.instancePort + ", heartbeatTime=" + this.heartbeatTime + ")";
         }
     }
 }

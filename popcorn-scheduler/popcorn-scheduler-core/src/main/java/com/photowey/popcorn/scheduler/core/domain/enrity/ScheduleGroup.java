@@ -30,16 +30,50 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
 
     private static final long serialVersionUID = -1230528783360759449L;
 
+    /**
+     * The ID of {@link ScheduleApp}
+     */
     private Long appId;
+    /**
+     * The code of this group job.
+     * <p>
+     *
+     * Example:
+     * <p>
+     * - ecomm.order.payment.status.delay.query
+     */
     private String groupCode;
+    /**
+     * The name of this group job.
+     * <p>
+     * - Delay query task for order payment status
+     */
     private String groupName;
+    /**
+     * The type of this job.
+     * <p>
+     * - 1.FixedRate
+     * <p>
+     * - 2.FixedDelay
+     * <p>
+     * - 3.Cron
+     */
     private Integer jobType;
     private String cron;
+    /**
+     * The context of this job.
+     */
     private String context;
+    /**
+     * The RPC protocol of this job, default HTTP.
+     */
     private String protocol;
     private Long initialDelay;
     private Long delay;
     private TimeUnit timeUnit;
+    /**
+     * The next trigger time of this group job.
+     */
     private LocalDateTime triggerTime;
 
     public static ScheduleGroupBuilder builder() {
