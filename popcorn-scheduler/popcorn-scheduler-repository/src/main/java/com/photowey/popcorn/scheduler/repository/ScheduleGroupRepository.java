@@ -15,7 +15,7 @@
  */
 package com.photowey.popcorn.scheduler.repository;
 
-import com.photowey.popcorn.scheduler.core.domain.enrity.ScheduleGroup;
+import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleGroup;
 
 /**
  * {@code ScheduleGroupRepository}

@@ -42,11 +42,11 @@ public interface ScheduleCrudRepository<T, ID> {
 
     }
 
-    default void delete(T t) {
+    default void remove(T t) {
 
     }
 
-    default void deleteById(ID id) {
+    default void removeById(ID id) {
 
     }
 

@@ -13,16 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.scheduler.repository;
+package com.photowey.popcorn.scheduler.repository.database.impl;
 
-import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleInstance;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleTask;
+import com.photowey.popcorn.scheduler.repository.ScheduleTaskRepository;
 
 /**
- * {@code ScheduleInstanceRepository}
+ * {@code ScheduleTaskDatabaseRepository}
  *
  * @author photowey
- * @date 2023/07/14
+ * @date 2023/07/16
  * @since 1.0.0
  */
-public interface ScheduleInstanceRepository extends ScheduleCrudRepository<ScheduleInstance, Long> {
+public interface ScheduleTaskDatabaseRepository extends ScheduleTaskRepository, BaseMapper<ScheduleTask> {
+
 }
