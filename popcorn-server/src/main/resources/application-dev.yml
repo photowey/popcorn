@@ -1,4 +1,56 @@
 # ----------------------------------------------------------------
+local:
+  config:
+    postgres:
+      host: "192.168.1.11"
+      port: 5432
+      username: "postgres"
+      password: "postgres"
+      database: "popcorn-server"
+
+# ----------------------------------------------------------------
+
+spring:
+  datasource:
+    driver-class-name: "org.postgresql.Driver"
+    url: "jdbc:postgresql://${local.config.postgres.host}:${local.config.postgres.port}/${local.config.postgres.database}?TimeZone=Asia/Shanghai"
+    username: ${local.config.postgres.username}
+    password: ${local.config.postgres.password}
+    hikari:
+      minimum-idle: 8
+      maximum-pool-size: 128
+      idle-timeout: 10
+      max-lifetime: 60000
+      connection-timeout: 5000
+      connection-test-query: SELECT 1
+  schedule:
+    popcorn:
+      app:
+        version: "1.0.0"
+      server:
+        scheduler:
+          kernel:
+            database:
+              enabled: true
+            mongo:
+              enabled: false
+
+mybatis-plus:
+  configuration:
+    cache-enabled: false
+    jdbc-type-for-null: 'null'
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+  global-config:
+    banner: off
+    db-config:
+      id-type: ASSIGN_ID
+  check-config-location: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.photowey.popcorn.scheduler.core.domain.entity
+
+# ----------------------------------------------------------------
+
 management:
   endpoint:
     shutdown:

@@ -15,8 +15,11 @@
  */
 package com.photowey.popcorn.scheduler.kernel.annotation;
 
+import com.photowey.popcorn.scheduler.service.database.annotation.EnabledScheduleDatabaseService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
@@ -38,6 +41,35 @@ public @interface EnableKernel {
             "com.photowey.popcorn.scheduler.kernel",
     })
     class EnableKernelConfigure {
+
+    }
+
+    @Configuration
+    @ConditionalOnProperty(prefix = "spring.schedule.popcorn.server.scheduler.kernel.database.enabled", havingValue = "true", matchIfMissing = true)
+    @Import(value = {
+            EnableKernelDatabaseConfigure.class,
+    })
+    class EnableKernelDatabaseSelectorConfigure {
+
+    }
+
+    @Configuration
+    @ConditionalOnProperty(prefix = "spring.schedule.popcorn.server.scheduler.kernel.mongo.enabled", havingValue = "true", matchIfMissing = false)
+    @Import(value = {
+            EnableKernelMongoConfigure.class,
+    })
+    class EnableKernelMongoSelectorConfigure {
+
+    }
+
+    @Configuration
+    @EnabledScheduleDatabaseService
+    class EnableKernelDatabaseConfigure {
+
+    }
+
+    @Configuration
+    class EnableKernelMongoConfigure {
 
     }
 }

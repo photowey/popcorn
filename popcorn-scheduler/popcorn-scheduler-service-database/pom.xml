@@ -20,6 +20,15 @@
             <groupId>com.photowey</groupId>
             <artifactId>popcorn-scheduler-service</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.photowey</groupId>
+            <artifactId>popcorn-scheduler-repository-database</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
