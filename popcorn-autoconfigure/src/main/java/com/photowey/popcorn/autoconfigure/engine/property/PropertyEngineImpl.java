@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.autoconfigure.engine.root;
+package com.photowey.popcorn.autoconfigure.engine.property;
 
 import com.photowey.popcorn.app.core.engine.AbstractEngine;
-import com.photowey.popcorn.autoconfigure.engine.executor.ExecutorEngine;
-import com.photowey.popcorn.autoconfigure.engine.property.PropertyEngine;
+import com.photowey.popcorn.autoconfigure.property.PopcornProperties;
+import com.photowey.popcorn.autoconfigure.property.PopcornServerProperties;
 
 /**
- * {@code PopcornEngineImpl}
+ * {@code PropertyEngineImpl}
  *
  * @author photowey
- * @date 2023/07/09
+ * @date 2023/07/16
  * @since 1.0.0
  */
-public class PopcornEngineImpl extends AbstractEngine implements PopcornEngine {
+public class PropertyEngineImpl extends AbstractEngine implements PropertyEngine {
 
     @Override
-    public ExecutorEngine executorEngine() {
-        return this.beanFactory().getBean(ExecutorEngine.class);
+    public PopcornProperties popcornProperties() {
+        return this.beanFactory().getBean(PopcornProperties.class);
     }
 
     @Override
-    public PropertyEngine propertyEngine() {
-        return this.beanFactory().getBean(PropertyEngine.class);
+    public PopcornServerProperties popcornServerProperties() {
+        return this.beanFactory().getBean(PopcornServerProperties.class);
     }
 }

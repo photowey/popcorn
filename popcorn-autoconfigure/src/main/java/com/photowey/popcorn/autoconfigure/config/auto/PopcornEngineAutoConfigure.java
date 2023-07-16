@@ -18,12 +18,13 @@ package com.photowey.popcorn.autoconfigure.config.auto;
 import com.photowey.popcorn.autoconfigure.config.EngineConfigure;
 import com.photowey.popcorn.autoconfigure.config.ExecutorConfigure;
 import com.photowey.popcorn.autoconfigure.engine.executor.ExecutorEngineAwareBeanPostProcessor;
+import com.photowey.popcorn.autoconfigure.engine.property.PropertyEngineAwareBeanPostProcessor;
 import com.photowey.popcorn.autoconfigure.engine.root.PopcornEngineAwareBeanPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 /**
- * {@code EngineAutoConfigure}
+ * {@code PopcornEngineAutoConfigure}
  *
  * @author photowey
  * @date 2023/07/09
@@ -35,6 +36,7 @@ import org.springframework.context.annotation.Import;
         EngineConfigure.class,
         ExecutorEngineAwareBeanPostProcessor.class,
         PopcornEngineAwareBeanPostProcessor.class,
+        PropertyEngineAwareBeanPostProcessor.class,
 })
-public class EngineAutoConfigure {
+public class PopcornEngineAutoConfigure {
 }

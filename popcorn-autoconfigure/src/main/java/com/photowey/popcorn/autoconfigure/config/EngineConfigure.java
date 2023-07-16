@@ -17,6 +17,8 @@ package com.photowey.popcorn.autoconfigure.config;
 
 import com.photowey.popcorn.autoconfigure.engine.executor.ExecutorEngine;
 import com.photowey.popcorn.autoconfigure.engine.executor.ExecutorEngineImpl;
+import com.photowey.popcorn.autoconfigure.engine.property.PropertyEngine;
+import com.photowey.popcorn.autoconfigure.engine.property.PropertyEngineImpl;
 import com.photowey.popcorn.autoconfigure.engine.root.PopcornEngine;
 import com.photowey.popcorn.autoconfigure.engine.root.PopcornEngineImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -36,6 +38,12 @@ public class EngineConfigure {
     @Bean
     public PopcornEngine popcornEngine() {
         return new PopcornEngineImpl();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(PropertyEngine.class)
+    public PropertyEngine propertyEngine() {
+        return new PropertyEngineImpl();
     }
 
     @Bean

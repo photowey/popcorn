@@ -27,7 +27,7 @@ import org.springframework.beans.factory.Aware;
 public interface ExecutorEngineAware extends Aware {
 
     /**
-     * Inject ExecutorEngine by setter.
+     * Inject {@link ExecutorEngine} by setter.
      *
      * @param executorEngine {@link ExecutorEngine}
      */

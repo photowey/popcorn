@@ -13,34 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.autoconfigure.property;
+package com.photowey.popcorn.autoconfigure.engine.property;
+
+import org.springframework.beans.factory.Aware;
 
 /**
- * {@code PopcornServerProperties}
+ * {@code PropertyEngineAware}
  *
  * @author photowey
- * @date 2023/07/10
+ * @date 2023/07/16
  * @since 1.0.0
  */
-public class PopcornProperties {
+public interface PropertyEngineAware extends Aware {
 
-    private static final String POPCORN_APP_PROPERTY_PREFIX = "spring.schedule.popcorn.app";
+    /**
+     * Inject {@link PropertyEngine} by setter.
+     *
+     * @param propertyEngine {@link PropertyEngine}
+     */
+    void setPropertyEngine(PropertyEngine propertyEngine);
 
-    public static String getPrefix() {
-        return POPCORN_APP_PROPERTY_PREFIX;
-    }
-
-    // ----------------------------------------------------------------
-
-    private String version;
-
-    // ----------------------------------------------------------------
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
 }
