@@ -30,7 +30,7 @@ public abstract class AbstractEntity<T> implements Serializable {
     protected Long id;
     protected LocalDateTime createTime;
     protected LocalDateTime updateTime;
-    protected Integer delete;
+    protected Integer deleted;
 
     public AbstractEntity() {
     }
@@ -47,8 +47,8 @@ public abstract class AbstractEntity<T> implements Serializable {
         return this.updateTime;
     }
 
-    public Integer getDelete() {
-        return this.delete;
+    public Integer getDeleted() {
+        return this.deleted;
     }
 
     public void setId(final Long id) {
@@ -63,7 +63,7 @@ public abstract class AbstractEntity<T> implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public void setDelete(final Integer delete) {
-        this.delete = delete;
+    public void setDeleted(final Integer deleted) {
+        this.deleted = deleted;
     }
 }
