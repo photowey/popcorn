@@ -15,6 +15,7 @@
  */
 package com.photowey.popcorn.scheduler.service.database.annotation;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -40,6 +41,9 @@ public @interface EnabledScheduleDatabaseService {
     @Configuration
     @ComponentScan(value = {
             "com.photowey.popcorn.scheduler.service.database",
+    })
+    @MapperScan(value = {
+            "com.photowey.popcorn.scheduler.repository.database.impl"
     })
     class EnabledScheduleDatabaseServiceConfigure {
 

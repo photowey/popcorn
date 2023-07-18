@@ -41,10 +41,10 @@ comment on column schedule_app.deleted is
 'The flag of deleted. 0/1';
 
 comment on column schedule_app.app_code is
-'The custem code of app. e.g.: merchant';
+'The custom code of app. e.g.: merchant';
 
 comment on column schedule_app.app_name is
-'The custem nameof app. e.g.: Merchant';
+'The custom name of app. e.g.: Merchant';
 
 comment on column schedule_app.client_id is
 'The client ID of app for the scheduler assignment, == username';

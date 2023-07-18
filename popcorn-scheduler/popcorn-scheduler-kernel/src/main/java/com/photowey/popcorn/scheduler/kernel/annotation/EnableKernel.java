@@ -30,10 +30,15 @@ import java.lang.annotation.*;
  * @date 2023/07/10
  * @since 1.0.0
  */
+@Inherited
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Configuration
+@Import(value = {
+        EnableKernel.EnableKernelConfigure.class,
+        EnableKernel.EnableKernelDatabaseSelectorConfigure.class,
+        EnableKernel.EnableKernelMongoSelectorConfigure.class,
+})
 public @interface EnableKernel {
 
     @Configuration
@@ -45,7 +50,7 @@ public @interface EnableKernel {
     }
 
     @Configuration
-    @ConditionalOnProperty(prefix = "spring.schedule.popcorn.server.scheduler.kernel.database.enabled", havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(name = "spring.schedule.popcorn.server.scheduler.kernel.database.enabled", havingValue = "true", matchIfMissing = true)
     @Import(value = {
             EnableKernelDatabaseConfigure.class,
     })
@@ -54,7 +59,7 @@ public @interface EnableKernel {
     }
 
     @Configuration
-    @ConditionalOnProperty(prefix = "spring.schedule.popcorn.server.scheduler.kernel.mongo.enabled", havingValue = "true", matchIfMissing = false)
+    @ConditionalOnProperty(name = "spring.schedule.popcorn.server.scheduler.kernel.mongo.enabled", havingValue = "true", matchIfMissing = false)
     @Import(value = {
             EnableKernelMongoConfigure.class,
     })
