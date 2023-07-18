@@ -16,6 +16,7 @@
 package com.photowey.popcorn.server;
 
 import com.photowey.popcorn.autoconfigure.starter.AppStarter;
+import com.photowey.popcorn.scheduler.kernel.annotation.EnableKernel;
 import com.photowey.popcorn.starting.printer.AppPrinter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +29,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @date 2023/07/08
  * @since 1.0.0
  */
+@EnableKernel
 @SpringBootApplication
 public class App {
 
