@@ -27,7 +27,7 @@ import org.springframework.beans.factory.Aware;
 public interface PopcornEngineAware extends Aware {
 
     /**
-     * Inject PopcornEngine by setter.
+     * Inject {@link PopcornEngine} by setter.
      *
      * @param popcornEngine {@link PopcornEngine}
      */

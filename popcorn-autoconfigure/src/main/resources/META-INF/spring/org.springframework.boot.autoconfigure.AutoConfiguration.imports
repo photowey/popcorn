@@ -1,2 +1,3 @@
-com.photowey.popcorn.autoconfigure.config.auto.EngineAutoConfigure
+com.photowey.popcorn.autoconfigure.config.auto.PopcornPropertiesAutoConfigure
+com.photowey.popcorn.autoconfigure.config.auto.PopcornEngineAutoConfigure
 com.photowey.popcorn.autoconfigure.config.auto.PopcornAutoConfigure

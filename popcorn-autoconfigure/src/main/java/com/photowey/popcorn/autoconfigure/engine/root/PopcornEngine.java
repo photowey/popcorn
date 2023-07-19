@@ -17,6 +17,7 @@ package com.photowey.popcorn.autoconfigure.engine.root;
 
 import com.photowey.popcorn.app.core.engine.Engine;
 import com.photowey.popcorn.autoconfigure.engine.executor.ExecutorEngine;
+import com.photowey.popcorn.autoconfigure.engine.property.PropertyEngine;
 
 /**
  * {@code PopcornEngine}
@@ -38,5 +39,14 @@ public interface PopcornEngine extends Engine {
      * @return {@link ExecutorEngine}
      */
     ExecutorEngine executorEngine();
+
+    /**
+     * Popcorn property root engine.
+     * <p>
+     * Popcorn 属性绑定根引擎
+     *
+     * @return {@link PropertyEngine}
+     */
+    PropertyEngine propertyEngine();
 
 }

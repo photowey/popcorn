@@ -17,6 +17,7 @@ package com.photowey.popcorn.autoconfigure.engine.root;
 
 import com.photowey.popcorn.app.core.engine.AbstractEngine;
 import com.photowey.popcorn.autoconfigure.engine.executor.ExecutorEngine;
+import com.photowey.popcorn.autoconfigure.engine.property.PropertyEngine;
 
 /**
  * {@code PopcornEngineImpl}
@@ -30,5 +31,10 @@ public class PopcornEngineImpl extends AbstractEngine implements PopcornEngine {
     @Override
     public ExecutorEngine executorEngine() {
         return this.beanFactory().getBean(ExecutorEngine.class);
+    }
+
+    @Override
+    public PropertyEngine propertyEngine() {
+        return this.beanFactory().getBean(PropertyEngine.class);
     }
 }

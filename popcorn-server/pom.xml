@@ -34,8 +34,9 @@
 
         <dependency>
             <groupId>com.photowey</groupId>
-            <artifactId>popcorn-autoconfigure</artifactId>
+            <artifactId>popcorn-scheduler-kernel</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.photowey</groupId>
             <artifactId>popcorn-printer</artifactId>

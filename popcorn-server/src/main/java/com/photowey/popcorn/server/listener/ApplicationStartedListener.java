@@ -78,7 +78,7 @@ public class ApplicationStartedListener implements ApplicationListener<Applicati
 
     private void doHeartbeat() {
         try {
-            String api = this.populateHealthzApi();
+            String api = this.determineHealthzApi();
             Status status = this.restOperations.getForObject(api, Status.class);
             String body = this.objectMapper.writeValueAsString(status);
             log.info("Popcorn: fire.app.start.health.check, the popcorn.server.health.api.response.body: {}", body);
