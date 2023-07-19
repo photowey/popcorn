@@ -64,11 +64,12 @@ create table schedule_group (
    group_code           VARCHAR(64)          not null,
    group_name           VARCHAR(64)          not null,
    job_type             INT2                 not null,
-   cron                 VARCHAR(64)          not null,
-   Context              TEXT                 null,
+   cron                 VARCHAR(64)          null,
+   context              TEXT                 null,
    rpc_protocol         VARCHAR(16)          not null,
-   initial_delay        INT4                 not null,
-   delay                INT4                 not null,
+   initial_delay        INT8                 not null,
+   delay                INT8                 not null,
+   period               INT8                 not null,
    time_unit            VARCHAR(16)          not null,
    trigger_time         TIMESTAMP            not null,
    constraint PK_SCHEDULE_GROUP primary key (id)
@@ -104,17 +105,20 @@ comment on column schedule_group.job_type is
 comment on column schedule_group.cron is
 'The expression of cron.';
 
-comment on column schedule_group.Context is
+comment on column schedule_group.context is
 'The context of rpc.';
 
 comment on column schedule_group.rpc_protocol is
 'The RPC protocol of schedule job . 1: HTTP(default)';
 
 comment on column schedule_group.initial_delay is
-'The iInitial delay time.';
+'The initial delay time.';
 
 comment on column schedule_group.delay is
 'The fixed delay time.';
+
+comment on column schedule_group.period is
+'The period of FixedRate job.';
 
 comment on column schedule_group.time_unit is
 'The delay time unit';

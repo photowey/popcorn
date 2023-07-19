@@ -17,14 +17,10 @@ package com.photowey.popcorn.scheduler.service.database;
 
 import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleApp;
 import com.photowey.popcorn.server.App;
-import org.junit.jupiter.api.BeforeEach;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.DigestUtils;
-import org.springframework.util.JdkIdGenerator;
 
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 
 /**
  * {@code ScheduleAppDatabaseServiceTest}
@@ -34,17 +30,7 @@ import java.time.LocalDateTime;
  * @since 1.0.0
  */
 @SpringBootTest(classes = {App.class})
-class ScheduleAppDatabaseServiceTest {
-
-    @Autowired
-    private ScheduleAppDatabaseService scheduleAppDatabaseService;
-
-    private JdkIdGenerator generator;
-
-    @BeforeEach
-    public void init() {
-        this.generator = new JdkIdGenerator();
-    }
+class ScheduleAppDatabaseServiceTest extends TestBase {
 
     //@Test
     void testSave() {
@@ -56,7 +42,7 @@ class ScheduleAppDatabaseServiceTest {
                 .clientSecret(DigestUtils.md5DigestAsHex(clientId.getBytes(StandardCharsets.UTF_8)))
                 .build();
 
-        populateInitFields(app);
+        this.populateInitFields(app);
 
         this.scheduleAppDatabaseService.save(app);
     }
@@ -71,16 +57,9 @@ class ScheduleAppDatabaseServiceTest {
                 .clientSecret(DigestUtils.md5DigestAsHex(clientId.getBytes(StandardCharsets.UTF_8)))
                 .build();
 
-        populateInitFields(app);
+        this.populateInitFields(app);
 
         this.scheduleAppDatabaseService.insert(app);
-    }
-
-    private static void populateInitFields(ScheduleApp app) {
-        LocalDateTime now = LocalDateTime.now();
-        app.setCreateTime(now);
-        app.setUpdateTime(now);
-        app.setDeleted(0);
     }
 
     private String uuid() {

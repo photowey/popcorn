@@ -65,11 +65,21 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
      */
     private String context;
     /**
-     * The RPC protocol of this job, default HTTP.
+     * The RPC rpcProtocol of this job, default HTTP.
      */
-    private String protocol;
+    private String rpcProtocol;
+    /**
+     * The initialDelay of schedule job.
+     */
     private Long initialDelay;
+    /**
+     * The delay of FixedDelay job.
+     */
     private Long delay;
+    /**
+     * The period of FixedRate job.
+     */
+    private Long period;
     private TimeUnit timeUnit;
     /**
      * The next trigger time of this group job.
@@ -104,8 +114,8 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
         return this.context;
     }
 
-    public String getProtocol() {
-        return this.protocol;
+    public String getRpcProtocol() {
+        return this.rpcProtocol;
     }
 
     public Long getInitialDelay() {
@@ -114,6 +124,10 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
 
     public Long getDelay() {
         return this.delay;
+    }
+
+    public Long getPeriod() {
+        return this.period;
     }
 
     public TimeUnit getTimeUnit() {
@@ -148,8 +162,8 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
         this.context = context;
     }
 
-    public void setProtocol(final String protocol) {
-        this.protocol = protocol;
+    public void setRpcProtocol(final String rpcProtocol) {
+        this.rpcProtocol = rpcProtocol;
     }
 
     public void setInitialDelay(final Long initialDelay) {
@@ -158,6 +172,10 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
 
     public void setDelay(final Long delay) {
         this.delay = delay;
+    }
+
+    public void setPeriod(Long period) {
+        this.period = period;
     }
 
     public void setTimeUnit(final TimeUnit timeUnit) {
@@ -171,16 +189,22 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
     public ScheduleGroup() {
     }
 
-    public ScheduleGroup(final Long appId, final String groupCode, final String groupName, final Integer jobType, final String cron, final String context, final String protocol, final Long initialDelay, final Long delay, final TimeUnit timeUnit, final LocalDateTime triggerTime) {
+    public ScheduleGroup(
+            final Long appId, final String groupCode, final String groupName,
+            final Integer jobType, final String cron, final String context,
+            final String rpcProtocol, final Long initialDelay,
+            final Long delay, Long period, final TimeUnit timeUnit,
+            final LocalDateTime triggerTime) {
         this.appId = appId;
         this.groupCode = groupCode;
         this.groupName = groupName;
         this.jobType = jobType;
         this.cron = cron;
         this.context = context;
-        this.protocol = protocol;
+        this.rpcProtocol = rpcProtocol;
         this.initialDelay = initialDelay;
         this.delay = delay;
+        this.period = period;
         this.timeUnit = timeUnit;
         this.triggerTime = triggerTime;
     }
@@ -192,9 +216,10 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
         private Integer jobType;
         private String cron;
         private String context;
-        private String protocol;
+        private String rpcProtocol;
         private Long initialDelay;
         private Long delay;
+        private Long period;
         private TimeUnit timeUnit;
         private LocalDateTime triggerTime;
 
@@ -231,8 +256,8 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
             return this;
         }
 
-        public ScheduleGroupBuilder protocol(final String protocol) {
-            this.protocol = protocol;
+        public ScheduleGroupBuilder rpcProtocol(final String rpcProtocol) {
+            this.rpcProtocol = rpcProtocol;
             return this;
         }
 
@@ -243,6 +268,11 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
 
         public ScheduleGroupBuilder delay(final Long delay) {
             this.delay = delay;
+            return this;
+        }
+
+        public ScheduleGroupBuilder period(final Long period) {
+            this.period = period;
             return this;
         }
 
@@ -257,11 +287,11 @@ public class ScheduleGroup extends AbstractEntity<ScheduleGroup> implements Seri
         }
 
         public ScheduleGroup build() {
-            return new ScheduleGroup(this.appId, this.groupCode, this.groupName, this.jobType, this.cron, this.context, this.protocol, this.initialDelay, this.delay, this.timeUnit, this.triggerTime);
+            return new ScheduleGroup(this.appId, this.groupCode, this.groupName, this.jobType, this.cron, this.context, this.rpcProtocol, this.initialDelay, this.delay, this.period, this.timeUnit, this.triggerTime);
         }
 
         public String toString() {
-            return "ScheduleGroup.ScheduleGroupBuilder(appId=" + this.appId + ", groupCode=" + this.groupCode + ", groupName=" + this.groupName + ", jobType=" + this.jobType + ", cron=" + this.cron + ", context=" + this.context + ", protocol=" + this.protocol + ", initialDelay=" + this.initialDelay + ", delay=" + this.delay + ", timeUnit=" + this.timeUnit + ", triggerTime=" + this.triggerTime + ")";
+            return "ScheduleGroup.ScheduleGroupBuilder(appId=" + this.appId + ", groupCode=" + this.groupCode + ", groupName=" + this.groupName + ", jobType=" + this.jobType + ", cron=" + this.cron + ", context=" + this.context + ", rpcProtocol=" + this.rpcProtocol + ", initialDelay=" + this.initialDelay + ", delay=" + this.delay + ", period=" + this.period + ", timeUnit=" + this.timeUnit + ", triggerTime=" + this.triggerTime + ")";
         }
     }
 }
