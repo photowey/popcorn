@@ -36,6 +36,8 @@ public abstract class TestBase {
     protected ScheduleAppDatabaseService scheduleAppDatabaseService;
     @Autowired
     protected ScheduleGroupDatabaseService scheduleGroupDatabaseService;
+    @Autowired
+    protected ScheduleInstanceDatabaseService scheduleInstanceDatabaseService;
 
     @Autowired
     protected PropertyEngine propertyEngine;
@@ -47,10 +49,10 @@ public abstract class TestBase {
         this.generator = new JdkIdGenerator();
     }
 
-    protected <T> void populateInitFields(AbstractEntity<T> app) {
+    protected <T> void populateInitFields(AbstractEntity<T> tt) {
         LocalDateTime now = LocalDateTime.now();
-        app.setCreateTime(now);
-        app.setUpdateTime(now);
-        app.setDeleted(0);
+        tt.setCreateTime(now);
+        tt.setUpdateTime(now);
+        tt.setDeleted(0);
     }
 }
