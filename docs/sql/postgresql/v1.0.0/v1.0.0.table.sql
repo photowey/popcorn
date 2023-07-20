@@ -136,9 +136,10 @@ create table schedule_instance (
    deleted              INT2                 not null,
    app_id               INT8                 not null,
    group_id             INT8                 not null,
-   instance_id          VARCHAR(64)          not null,
+   instance_ip          VARCHAR(64)          not null,
    instance_port        INT4                 not null,
    rpc_protocol         VARCHAR(16)          not null,
+   heartbeat_time       TIMESTAMP            not null,
    constraint PK_SCHEDULE_INSTANCE primary key (id)
 );
 
@@ -163,7 +164,7 @@ comment on column schedule_instance.app_id is
 comment on column schedule_instance.group_id is
 'The group id';
 
-comment on column schedule_instance.instance_id is
+comment on column schedule_instance.instance_ip is
 'The ip of schedule instance.';
 
 comment on column schedule_instance.instance_port is
@@ -171,6 +172,9 @@ comment on column schedule_instance.instance_port is
 
 comment on column schedule_instance.rpc_protocol is
 'The RPC protocol of schedule job . 1: HTTP(default)';
+
+comment on column schedule_instance.heartbeat_time is
+'The time of latest heart beat.';
 
 /*==============================================================*/
 /* Table: schedule_job                                          */
@@ -230,12 +234,12 @@ create table schedule_task (
    group_id             INT8                 not null,
    group_code           VARCHAR(64)          not null,
    job_id               INT8                 not null,
-   instance_id          VARCHAR(64)          not null,
+   instance_ip          VARCHAR(64)          not null,
    instance_port        INT4                 not null,
    task_status          INT2                 not null,
    finished_time        TIMESTAMP            not null,
-   "Fail reason"        TEXT                 null,
-   "Retry count"        INT4                 not null,
+   fail_reason          TEXT                 null,
+   retry_count          INT4                 not null,
    constraint PK_SCHEDULE_TASK primary key (id)
 );
 
@@ -266,7 +270,7 @@ comment on column schedule_task.group_code is
 comment on column schedule_task.job_id is
 'The job id.';
 
-comment on column schedule_task.instance_id is
+comment on column schedule_task.instance_ip is
 'The ip of schedule instance.';
 
 comment on column schedule_task.instance_port is
@@ -278,9 +282,9 @@ comment on column schedule_task.task_status is
 comment on column schedule_task.finished_time is
 'The finished time of schedule task of this instance.';
 
-comment on column schedule_task."Fail reason" is
+comment on column schedule_task.fail_reason is
 'The fail reason of schedule task of this instance. ';
 
-comment on column schedule_task."Retry count" is
+comment on column schedule_task.retry_count is
 'The count of retry, default 0.';
 
