@@ -46,6 +46,10 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
      */
     private Integer instancePort;
     /**
+     * The protocol of RPC.
+     */
+    private String rpcProtocol;
+    /**
      * The latest time of heartbeat.
      */
     private LocalDateTime heartbeatTime;
@@ -70,6 +74,10 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
         return this.instancePort;
     }
 
+    public String getRpcProtocol() {
+        return rpcProtocol;
+    }
+
     public LocalDateTime getHeartbeatTime() {
         return this.heartbeatTime;
     }
@@ -90,6 +98,10 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
         this.instancePort = instancePort;
     }
 
+    public void setRpcProtocol(String rpcProtocol) {
+        this.rpcProtocol = rpcProtocol;
+    }
+
     public void setHeartbeatTime(final LocalDateTime heartbeatTime) {
         this.heartbeatTime = heartbeatTime;
     }
@@ -97,11 +109,12 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
     public ScheduleInstance() {
     }
 
-    public ScheduleInstance(final Long appId, final Long groupId, final String instanceIp, final Integer instancePort, final LocalDateTime heartbeatTime) {
+    public ScheduleInstance(final Long appId, final Long groupId, final String instanceIp, final Integer instancePort, final String rpcProtocol, final LocalDateTime heartbeatTime) {
         this.appId = appId;
         this.groupId = groupId;
         this.instanceIp = instanceIp;
         this.instancePort = instancePort;
+        this.rpcProtocol = rpcProtocol;
         this.heartbeatTime = heartbeatTime;
     }
 
@@ -110,6 +123,8 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
         private Long groupId;
         private String instanceIp;
         private Integer instancePort;
+
+        private String rpcProtocol;
         private LocalDateTime heartbeatTime;
 
         ScheduleInstanceBuilder() {
@@ -135,17 +150,22 @@ public class ScheduleInstance extends AbstractEntity<ScheduleInstance> implement
             return this;
         }
 
+        public ScheduleInstanceBuilder rpcProtocol(final String rpcProtocol) {
+            this.rpcProtocol = rpcProtocol;
+            return this;
+        }
+
         public ScheduleInstanceBuilder heartbeatTime(final LocalDateTime heartbeatTime) {
             this.heartbeatTime = heartbeatTime;
             return this;
         }
 
         public ScheduleInstance build() {
-            return new ScheduleInstance(this.appId, this.groupId, this.instanceIp, this.instancePort, this.heartbeatTime);
+            return new ScheduleInstance(this.appId, this.groupId, this.instanceIp, this.instancePort, this.rpcProtocol, this.heartbeatTime);
         }
 
         public String toString() {
-            return "ScheduleInstance.ScheduleInstanceBuilder(appId=" + this.appId + ", groupId=" + this.groupId + ", instanceIp=" + this.instanceIp + ", instancePort=" + this.instancePort + ", heartbeatTime=" + this.heartbeatTime + ")";
+            return "ScheduleInstance.ScheduleInstanceBuilder(appId=" + this.appId + ", groupId=" + this.groupId + ", instanceIp=" + this.instanceIp + ", instancePort=" + this.instancePort + ", rpcProtocol=" + this.rpcProtocol + ", heartbeatTime=" + this.heartbeatTime + ")";
         }
     }
 }
