@@ -38,6 +38,8 @@ public abstract class TestBase {
     protected ScheduleGroupDatabaseService scheduleGroupDatabaseService;
     @Autowired
     protected ScheduleInstanceDatabaseService scheduleInstanceDatabaseService;
+    @Autowired
+    protected ScheduleJobDatabaseService scheduleJobDatabaseService;
 
     @Autowired
     protected PropertyEngine propertyEngine;
