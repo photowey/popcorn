@@ -237,7 +237,7 @@ create table schedule_task (
    instance_ip          VARCHAR(64)          not null,
    instance_port        INT4                 not null,
    task_status          INT2                 not null,
-   finished_time        TIMESTAMP            not null,
+   finished_time        TIMESTAMP            null,
    fail_reason          TEXT                 null,
    retry_count          INT4                 not null,
    constraint PK_SCHEDULE_TASK primary key (id)
