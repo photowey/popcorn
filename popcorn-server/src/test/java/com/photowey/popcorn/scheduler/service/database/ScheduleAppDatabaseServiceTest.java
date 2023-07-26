@@ -61,8 +61,4 @@ class ScheduleAppDatabaseServiceTest extends TestBase {
 
         this.scheduleAppDatabaseService.insert(app);
     }
-
-    private String uuid() {
-        return this.generator.generateId().toString().replaceAll("-", "");
-    }
 }

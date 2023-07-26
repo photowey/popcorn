@@ -15,12 +15,11 @@
  */
 package com.photowey.popcorn.scheduler.service.database;
 
+import com.photowey.popcorn.common.clock.SystemClock;
 import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleJob;
 import com.photowey.popcorn.server.App;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.LocalDateTime;
 
 /**
  * {@code ScheduleJobDatabaseServiceTest}
@@ -41,7 +40,7 @@ class ScheduleJobDatabaseServiceTest extends TestBase {
                 .groupId(groupId)
                 .groupCode("ecomm.order.payment.status.delay.query")
                 .triggerStatus(1)
-                .triggerTime(LocalDateTime.now())
+                .triggerTime(SystemClock.LocalDateTime.now())
                 .build();
 
         this.populateInitFields(scheduleJob);
@@ -59,7 +58,7 @@ class ScheduleJobDatabaseServiceTest extends TestBase {
                 .groupId(groupId)
                 .groupCode("ecomm.order.refund.status.delay.query")
                 .triggerStatus(1)
-                .triggerTime(LocalDateTime.now())
+                .triggerTime(SystemClock.LocalDateTime.now())
                 .build();
 
         this.populateInitFields(scheduleJob);

@@ -15,11 +15,10 @@
  */
 package com.photowey.popcorn.scheduler.service.database;
 
+import com.photowey.popcorn.common.clock.SystemClock;
 import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleInstance;
 import com.photowey.popcorn.server.App;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.LocalDateTime;
 
 /**
  * {@code ScheduleInstanceDatabaseServiceTest}
@@ -41,7 +40,7 @@ class ScheduleInstanceDatabaseServiceTest extends TestBase {
                 .instanceIp("192.168.1.101")
                 .instancePort(9320)
                 .rpcProtocol("HTTP")
-                .heartbeatTime(LocalDateTime.now())
+                .heartbeatTime(SystemClock.LocalDateTime.now())
                 .build();
 
         this.populateInitFields(instance);
@@ -59,7 +58,7 @@ class ScheduleInstanceDatabaseServiceTest extends TestBase {
                 .instanceIp("192.168.1.102")
                 .instancePort(9320)
                 .rpcProtocol("HTTP")
-                .heartbeatTime(LocalDateTime.now())
+                .heartbeatTime(SystemClock.LocalDateTime.now())
                 .build();
 
         this.populateInitFields(instance);

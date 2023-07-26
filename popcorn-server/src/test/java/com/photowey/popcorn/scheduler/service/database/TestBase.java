@@ -16,6 +16,7 @@
 package com.photowey.popcorn.scheduler.service.database;
 
 import com.photowey.popcorn.autoconfigure.engine.property.PropertyEngine;
+import com.photowey.popcorn.common.clock.SystemClock;
 import com.photowey.popcorn.scheduler.core.domain.entity.AbstractEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +53,13 @@ public abstract class TestBase {
     }
 
     protected <T> void populateInitFields(AbstractEntity<T> tt) {
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = SystemClock.LocalDateTime.now();
         tt.setCreateTime(now);
         tt.setUpdateTime(now);
         tt.setDeleted(0);
+    }
+
+    protected String uuid() {
+        return this.generator.generateId().toString().replaceAll("-", "");
     }
 }

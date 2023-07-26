@@ -15,12 +15,12 @@
  */
 package com.photowey.popcorn.scheduler.service.database;
 
+import com.photowey.popcorn.common.clock.SystemClock;
 import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleGroup;
 import com.photowey.popcorn.server.App;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -51,7 +51,7 @@ class ScheduleGroupDatabaseServiceTest extends TestBase {
                 .delay(0L)
                 .period(0L)
                 .timeUnit(TimeUnit.SECONDS)
-                .triggerTime(LocalDateTime.now())
+                .triggerTime(SystemClock.LocalDateTime.now())
                 .build();
 
         this.populateInitFields(group);
@@ -74,7 +74,7 @@ class ScheduleGroupDatabaseServiceTest extends TestBase {
                 .delay(0L)
                 .period(15L)
                 .timeUnit(TimeUnit.SECONDS)
-                .triggerTime(LocalDateTime.now())
+                .triggerTime(SystemClock.LocalDateTime.now())
                 .build();
 
         this.populateInitFields(group);
@@ -97,7 +97,7 @@ class ScheduleGroupDatabaseServiceTest extends TestBase {
                 .delay(15L)
                 .period(0L)
                 .timeUnit(TimeUnit.SECONDS)
-                .triggerTime(LocalDateTime.now())
+                .triggerTime(SystemClock.LocalDateTime.now())
                 .build();
 
         this.populateInitFields(group);
