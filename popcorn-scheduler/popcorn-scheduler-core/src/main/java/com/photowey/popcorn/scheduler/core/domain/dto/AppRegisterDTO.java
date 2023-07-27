@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * {@code AppRegisterDTO}
@@ -90,6 +91,34 @@ public class AppRegisterDTO implements Serializable {
         this.clientSecret = clientSecret;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AppRegisterDTO)) return false;
+        AppRegisterDTO that = (AppRegisterDTO) o;
+        return Objects.equals(getAppId(), that.getAppId())
+                && Objects.equals(getAppCode(), that.getAppCode())
+                && Objects.equals(getAppName(), that.getAppName())
+                && Objects.equals(getClientId(), that.getClientId())
+                && Objects.equals(getClientSecret(), that.getClientSecret());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAppId(), getAppCode(), getAppName(), getClientId(), getClientSecret());
+    }
+
+    @Override
+    public String toString() {
+        return "AppRegisterDTO{" +
+                "appId=" + appId +
+                ", appCode='" + appCode + '\'' +
+                ", appName='" + appName + '\'' +
+                ", clientId='" + clientId + '\'' +
+                ", clientSecret='" + clientSecret + '\'' +
+                '}';
+    }
+
     public AppRegisterDTO() {
     }
 
@@ -102,7 +131,6 @@ public class AppRegisterDTO implements Serializable {
     }
 
     public static class AppRegisterDTOBuilder {
-
         private Long appId;
         private String appCode;
         private String appName;

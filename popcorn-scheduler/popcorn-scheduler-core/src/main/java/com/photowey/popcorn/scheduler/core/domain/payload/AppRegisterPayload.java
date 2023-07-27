@@ -16,6 +16,7 @@
 package com.photowey.popcorn.scheduler.core.domain.payload;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * {@code AppRegisterPayload}
@@ -53,6 +54,27 @@ public class AppRegisterPayload implements Serializable {
 
     public void setAppName(final String appName) {
         this.appName = appName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AppRegisterPayload)) return false;
+        AppRegisterPayload that = (AppRegisterPayload) o;
+        return Objects.equals(getAppCode(), that.getAppCode()) && Objects.equals(getAppName(), that.getAppName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAppCode(), getAppName());
+    }
+
+    @Override
+    public String toString() {
+        return "AppRegisterPayload{" +
+                "appCode='" + appCode + '\'' +
+                ", appName='" + appName + '\'' +
+                '}';
     }
 
     public AppRegisterPayload() {
