@@ -28,10 +28,15 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 public class ExecutorEngineAwareBeanPostProcessor extends AbstractEngineAwareBeanPostProcessor<ExecutorEngine, ExecutorEngineAware> {
 
     @Override
-    public void inject(ConfigurableListableBeanFactory beanFactory, Object bean) {
-        if (bean instanceof ExecutorEngineAware) {
-            ExecutorEngine executorEngine = this.beanFactory.getBean(ExecutorEngine.class);
-            ((ExecutorEngineAware) bean).setExecutorEngine(executorEngine);
-        }
+    public Object inject(ConfigurableListableBeanFactory beanFactory, Object bean) {
+        ExecutorEngine executorEngine = this.beanFactory.getBean(ExecutorEngine.class);
+        ((ExecutorEngineAware) bean).setExecutorEngine(executorEngine);
+
+        return bean;
+    }
+
+    @Override
+    public boolean determineInjects(Object bean, String beanName) {
+        return bean instanceof ExecutorEngineAware;
     }
 }

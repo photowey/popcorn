@@ -29,10 +29,15 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 public class PropertyEngineAwareBeanPostProcessor extends AbstractEngineAwareBeanPostProcessor<PropertyEngine, ExecutorEngineAware> {
 
     @Override
-    public void inject(ConfigurableListableBeanFactory beanFactory, Object bean) {
-        if (bean instanceof PropertyEngineAware) {
-            PropertyEngine propertyEngine = this.beanFactory.getBean(PropertyEngine.class);
-            ((PropertyEngineAware) bean).setPropertyEngine(propertyEngine);
-        }
+    public Object inject(ConfigurableListableBeanFactory beanFactory, Object bean) {
+        PropertyEngine propertyEngine = this.beanFactory.getBean(PropertyEngine.class);
+        ((PropertyEngineAware) bean).setPropertyEngine(propertyEngine);
+
+        return bean;
+    }
+
+    @Override
+    public boolean determineInjects(Object bean, String beanName) {
+        return bean instanceof PropertyEngineAware;
     }
 }

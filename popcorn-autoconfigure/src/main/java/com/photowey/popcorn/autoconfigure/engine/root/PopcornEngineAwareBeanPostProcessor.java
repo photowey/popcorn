@@ -29,10 +29,15 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 public class PopcornEngineAwareBeanPostProcessor extends AbstractEngineAwareBeanPostProcessor<PopcornEngine, ExecutorEngineAware> {
 
     @Override
-    public void inject(ConfigurableListableBeanFactory beanFactory, Object bean) {
-        if (bean instanceof PopcornEngineAware) {
-            PopcornEngine popcornEngine = this.beanFactory.getBean(PopcornEngine.class);
-            ((PopcornEngineAware) bean).setPopcornEngine(popcornEngine);
-        }
+    public Object inject(ConfigurableListableBeanFactory beanFactory, Object bean) {
+        PopcornEngine popcornEngine = this.beanFactory.getBean(PopcornEngine.class);
+        ((PopcornEngineAware) bean).setPopcornEngine(popcornEngine);
+
+        return bean;
+    }
+
+    @Override
+    public boolean determineInjects(Object bean, String beanName) {
+        return bean instanceof PopcornEngineAware;
     }
 }

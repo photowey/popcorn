@@ -39,10 +39,22 @@ public abstract class AbstractEngineAwareBeanPostProcessor<E extends Engine, A e
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        this.inject(beanFactory, bean);
+        if (this.determineInjects(bean, beanName)) {
+            return this.inject(this.beanFactory, bean, beanName);
+        }
 
         return bean;
     }
 
-    public abstract void inject(ConfigurableListableBeanFactory beanFactory, Object bean);
+    public boolean determineInjects(Object bean, String beanName) {
+        return false;
+    }
+
+    public Object inject(ConfigurableListableBeanFactory beanFactory, Object bean) {
+        return bean;
+    }
+
+    public Object inject(ConfigurableListableBeanFactory beanFactory, Object bean, String beanName) {
+        return this.inject(beanFactory, bean);
+    }
 }
