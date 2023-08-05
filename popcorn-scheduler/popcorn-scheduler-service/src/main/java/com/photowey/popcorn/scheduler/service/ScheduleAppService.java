@@ -15,7 +15,9 @@
  */
 package com.photowey.popcorn.scheduler.service;
 
+import com.photowey.popcorn.scheduler.core.domain.dto.AppRegisterDTO;
 import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleApp;
+import com.photowey.popcorn.scheduler.core.domain.payload.AppRegisterPayload;
 
 /**
  * {@code ScheduleAppService}
@@ -25,4 +27,13 @@ import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleApp;
  * @since 1.0.0
  */
 public interface ScheduleAppService extends ScheduleCrudService<ScheduleApp, Long> {
+
+    /**
+     * Register schedule app info.
+     *
+     * @param payload {@link AppRegisterPayload}
+     * @return @{@link AppRegisterDTO}
+     */
+    AppRegisterDTO register(AppRegisterPayload payload);
+
 }

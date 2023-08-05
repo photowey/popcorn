@@ -19,6 +19,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleApp;
 import com.photowey.popcorn.scheduler.service.ScheduleAppService;
 
+import java.util.List;
+
 /**
  * {@code ScheduleAppDatabaseService}
  *
@@ -27,5 +29,35 @@ import com.photowey.popcorn.scheduler.service.ScheduleAppService;
  * @since 1.0.0
  */
 public interface ScheduleAppDatabaseService extends ScheduleAppService, IService<ScheduleApp> {
+
+    @Override
+    default boolean insert(ScheduleApp tt) {
+        return this.save(tt);
+    }
+
+    @Override
+    default boolean batchInsert(List<ScheduleApp> tts) {
+        return this.saveBatch(tts);
+    }
+
+    @Override
+    default boolean updatee(ScheduleApp tt) {
+        return this.updateById(tt);
+    }
+
+    @Override
+    default boolean batchUpdatee(List<ScheduleApp> tts) {
+        return this.updateBatchById(tts);
+    }
+
+    @Override
+    default boolean delete(ScheduleApp tt) {
+        return this.removeById(tt);
+    }
+
+    @Override
+    default boolean deleteById(Long id) {
+        return this.removeById(id);
+    }
 
 }

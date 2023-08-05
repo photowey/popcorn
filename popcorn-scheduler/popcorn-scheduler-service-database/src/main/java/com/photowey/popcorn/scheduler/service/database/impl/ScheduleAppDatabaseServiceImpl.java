@@ -16,12 +16,13 @@
 package com.photowey.popcorn.scheduler.service.database.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.photowey.popcorn.scheduler.core.domain.dto.AppRegisterDTO;
 import com.photowey.popcorn.scheduler.core.domain.entity.ScheduleApp;
+import com.photowey.popcorn.scheduler.core.domain.payload.AppRegisterPayload;
 import com.photowey.popcorn.scheduler.repository.database.impl.ScheduleAppDatabaseRepository;
 import com.photowey.popcorn.scheduler.service.database.ScheduleAppDatabaseService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * {@code ScheduleAppDatabaseServiceImpl}
@@ -33,33 +34,17 @@ import java.util.List;
 @Service
 public class ScheduleAppDatabaseServiceImpl extends ServiceImpl<ScheduleAppDatabaseRepository, ScheduleApp> implements ScheduleAppDatabaseService {
 
-    @Override
-    public boolean insert(ScheduleApp tt) {
-        return this.save(tt);
-    }
+    // ----------------------------------------------------------------
 
+    /**
+     * Register schedule app info.
+     *
+     * @param payload {@link AppRegisterPayload}
+     * @return @{@link AppRegisterDTO}
+     */
     @Override
-    public boolean batchInsert(List<ScheduleApp> tts) {
-        return this.saveBatch(tts);
-    }
-
-    @Override
-    public boolean updatee(ScheduleApp tt) {
-        return this.updateById(tt);
-    }
-
-    @Override
-    public boolean batchUpdatee(List<ScheduleApp> tts) {
-        return this.updateBatchById(tts);
-    }
-
-    @Override
-    public boolean delete(ScheduleApp tt) {
-        return this.removeById(tt);
-    }
-
-    @Override
-    public boolean deleteById(Long id) {
-        return this.removeById(id);
+    @Transactional(rollbackFor = Exception.class)
+    public AppRegisterDTO register(AppRegisterPayload payload) {
+        throw new UnsupportedOperationException("UnSupported now.");
     }
 }

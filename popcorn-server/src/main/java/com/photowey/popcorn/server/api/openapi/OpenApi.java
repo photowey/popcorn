@@ -15,6 +15,17 @@
  */
 package com.photowey.popcorn.server.api.openapi;
 
+import com.photowey.popcorn.scheduler.core.domain.dto.AppRegisterDTO;
+import com.photowey.popcorn.scheduler.core.domain.payload.AppRegisterPayload;
+import com.photowey.popcorn.scheduler.service.engine.ServiceEngine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -25,5 +36,28 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 1.0.0
  */
 @RestController
+@RequestMapping("/v1/openapi")
 public class OpenApi {
+
+    private static final Logger log = LoggerFactory.getLogger(OpenApi.class);
+
+    private final ServiceEngine serviceEngine;
+
+    public OpenApi(ServiceEngine serviceEngine) {
+        this.serviceEngine = serviceEngine;
+    }
+
+    /**
+     * POST :/register
+     * Register schedule app info.
+     *
+     * @param payload {@link AppRegisterPayload}
+     * @return {@link AppRegisterDTO}
+     * @see * http://localhost:9320/popcorn/v1/openapi/register
+     */
+    @PostMapping("/register")
+    public ResponseEntity<AppRegisterDTO> register(@RequestBody @Validated AppRegisterPayload payload) {
+        AppRegisterDTO registered = this.serviceEngine.scheduleAppService().register(payload);
+        return new ResponseEntity<>(registered, HttpStatus.OK);
+    }
 }
