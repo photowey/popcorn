@@ -17,7 +17,6 @@ package com.photowey.popcorn.app.core.engine;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 
@@ -32,7 +31,7 @@ public abstract class AbstractEngine implements Engine {
 
     // ----------------------------------------------------------------
 
-    protected ListableBeanFactory beanFactory;
+    protected BeanFactory beanFactory;
 
     protected ApplicationContext applicationContext;
 
@@ -42,7 +41,7 @@ public abstract class AbstractEngine implements Engine {
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        this.beanFactory = (ListableBeanFactory) beanFactory;
+        this.beanFactory = beanFactory;
     }
 
     @Override
@@ -58,7 +57,7 @@ public abstract class AbstractEngine implements Engine {
     // ----------------------------------------------------------------
 
     @Override
-    public ListableBeanFactory beanFactory() {
+    public BeanFactory beanFactory() {
         return beanFactory;
     }
 

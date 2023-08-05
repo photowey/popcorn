@@ -15,7 +15,7 @@
  */
 package com.photowey.popcorn.autoconfigure.engine.root;
 
-import org.springframework.beans.factory.Aware;
+import com.photowey.popcorn.app.core.engine.EngineAware;
 
 /**
  * {@code PopcornEngineAware}
@@ -24,7 +24,7 @@ import org.springframework.beans.factory.Aware;
  * @date 2023/07/09
  * @since 1.0.0
  */
-public interface PopcornEngineAware extends Aware {
+public interface PopcornEngineAware extends EngineAware {
 
     /**
      * Inject {@link PopcornEngine} by setter.

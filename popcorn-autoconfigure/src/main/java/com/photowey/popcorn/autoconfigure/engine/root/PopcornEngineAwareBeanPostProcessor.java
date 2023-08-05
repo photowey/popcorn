@@ -15,7 +15,7 @@
  */
 package com.photowey.popcorn.autoconfigure.engine.root;
 
-import com.photowey.popcorn.autoconfigure.engine.base.AbstractEngineAwareBeanPostProcessor;
+import com.photowey.popcorn.app.core.engine.AbstractEngineAwareBeanPostProcessor;
 import com.photowey.popcorn.autoconfigure.engine.executor.ExecutorEngineAware;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 

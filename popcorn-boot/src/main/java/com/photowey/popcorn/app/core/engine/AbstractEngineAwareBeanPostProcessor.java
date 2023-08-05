@@ -13,12 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.autoconfigure.engine.base;
+package com.photowey.popcorn.app.core.engine;
 
-import com.photowey.popcorn.app.core.engine.Engine;
-import com.photowey.popcorn.app.core.engine.EngineBeanPostProcessor;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.Aware;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
@@ -28,7 +25,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  * @date 2023/07/09
  * @since 1.0.0
  */
-public abstract class AbstractEngineAwareBeanPostProcessor<E extends Engine, A extends Aware> implements EngineBeanPostProcessor {
+public abstract class AbstractEngineAwareBeanPostProcessor<E extends Engine, A extends EngineAware> implements EngineBeanPostProcessor {
 
     protected ConfigurableListableBeanFactory beanFactory;
 

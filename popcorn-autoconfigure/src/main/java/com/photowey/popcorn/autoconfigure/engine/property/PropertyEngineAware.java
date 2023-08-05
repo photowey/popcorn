@@ -15,7 +15,7 @@
  */
 package com.photowey.popcorn.autoconfigure.engine.property;
 
-import org.springframework.beans.factory.Aware;
+import com.photowey.popcorn.app.core.engine.EngineAware;
 
 /**
  * {@code PropertyEngineAware}
@@ -24,7 +24,7 @@ import org.springframework.beans.factory.Aware;
  * @date 2023/07/16
  * @since 1.0.0
  */
-public interface PropertyEngineAware extends Aware {
+public interface PropertyEngineAware extends EngineAware {
 
     /**
      * Inject {@link PropertyEngine} by setter.

@@ -13,23 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.photowey.popcorn.autoconfigure.engine.executor;
+package com.photowey.popcorn.app.core.engine;
 
-import com.photowey.popcorn.app.core.engine.EngineAware;
+import org.springframework.beans.factory.Aware;
 
 /**
- * {@code ExecutorEngineAware}
+ * {@code EngineAware}
  *
  * @author photowey
- * @date 2023/07/09
+ * @date 2023/07/30
  * @since 1.0.0
  */
-public interface ExecutorEngineAware extends EngineAware {
-
-    /**
-     * Inject {@link ExecutorEngine} by setter.
-     *
-     * @param executorEngine {@link ExecutorEngine}
-     */
-    void setExecutorEngine(ExecutorEngine executorEngine);
+public interface EngineAware extends Aware {
 }
