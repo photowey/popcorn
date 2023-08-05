@@ -21,8 +21,6 @@ import com.photowey.popcorn.scheduler.repository.database.impl.ScheduleJobDataba
 import com.photowey.popcorn.scheduler.service.database.ScheduleJobDatabaseService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * {@code ScheduleJobDatabaseServiceImpl}
  *
@@ -33,33 +31,4 @@ import java.util.List;
 @Service
 public class ScheduleJobDatabaseServiceImpl extends ServiceImpl<ScheduleJobDatabaseRepository, ScheduleJob> implements ScheduleJobDatabaseService {
 
-    @Override
-    public boolean insert(ScheduleJob tt) {
-        return this.save(tt);
-    }
-
-    @Override
-    public boolean batchInsert(List<ScheduleJob> tts) {
-        return this.saveBatch(tts);
-    }
-
-    @Override
-    public boolean updatee(ScheduleJob tt) {
-        return this.updateById(tt);
-    }
-
-    @Override
-    public boolean batchUpdatee(List<ScheduleJob> tts) {
-        return this.updateBatchById(tts);
-    }
-
-    @Override
-    public boolean delete(ScheduleJob tt) {
-        return this.removeById(tt);
-    }
-
-    @Override
-    public boolean deleteById(Long id) {
-        return this.removeById(id);
-    }
 }
