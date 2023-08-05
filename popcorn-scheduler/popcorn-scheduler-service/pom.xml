@@ -18,6 +18,10 @@
     <dependencies>
         <dependency>
             <groupId>com.photowey</groupId>
+            <artifactId>popcorn-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.photowey</groupId>
             <artifactId>popcorn-scheduler-repository</artifactId>
         </dependency>
     </dependencies>

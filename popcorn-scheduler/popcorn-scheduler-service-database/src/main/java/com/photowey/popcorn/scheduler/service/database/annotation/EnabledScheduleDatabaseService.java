@@ -15,7 +15,11 @@
  */
 package com.photowey.popcorn.scheduler.service.database.annotation;
 
+import com.photowey.popcorn.scheduler.service.engine.ServiceEngine;
+import com.photowey.popcorn.scheduler.service.engine.ServiceEngineAwareBeanPostProcessor;
+import com.photowey.popcorn.scheduler.service.engine.ServiceEngineImpl;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -34,6 +38,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Import(value = {
+        ServiceEngineAwareBeanPostProcessor.class,
         EnabledScheduleDatabaseService.EnabledScheduleDatabaseServiceConfigure.class,
 })
 public @interface EnabledScheduleDatabaseService {
@@ -47,6 +52,15 @@ public @interface EnabledScheduleDatabaseService {
     })
     class EnabledScheduleDatabaseServiceConfigure {
 
+        /**
+         * Config {@link ServiceEngine}
+         *
+         * @return {@link ServiceEngine}
+         */
+        @Bean
+        public ServiceEngine serviceEngine() {
+            return new ServiceEngineImpl();
+        }
     }
 
 }
